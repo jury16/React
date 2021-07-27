@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>I_Shop</title>
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+    <script src="Ishop.js"></script>
+    <link rel="stylesheet" type="text/css" href="Ishop.css" />
+
+    <script>
+        var questionText = 'I_SHOP';
+        var answersArr = [{
+            name: 'BMW',
+            code: 1,
+            price: '76000$',
+            count: 3
+        }, {
+            name: 'AUDI',
+            code: 2,
+            price: '54000$',
+            count: 4
+        }, {
+            name: 'VOLVO',
+            code: 3,
+            price: '45000$',
+            count: 3
+        }, {
+            name: 'KIA',
+            code: 4,
+            price: '26000$',
+            count: 7
+        }];
+
+        ReactDOM.render(
+            React.createElement(Ishop, {
+                question: questionText,
+                answers: answersArr
+            }),
+            document.getElementById('container')
+        );
+    </script>
+
+</body>
+
+</html>
