@@ -1,2 +1,2 @@
-React, Angular and TypeScript course,\n
+React, Angular and TypeScript course,
 IT-Academy
