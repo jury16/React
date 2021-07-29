@@ -4,7 +4,7 @@ var Ishop = React.createClass({
     getDefaultProps: function() {
         return {
             shopName: "Shop name not found",
-            productsArr: [{ id: 0, brand: 'not found', price: 'not found', url: 'not found', count: 'not found' }]
+            cars: [{ code: 0, brand: 'not found', price: 'not found', url: 'not found', count: 'not found' }]
         }
     },
     render: function() {
