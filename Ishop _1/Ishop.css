@@ -1,0 +1,53 @@
+.IshopFrame {
+    border: 2px solid black;
+    min-width: 60%;
+}
+
+.IshopText,
+.IshopTableHead {
+    color: green;
+    border: 1px solid blue;
+    text-align: center;
+    height: 5em;
+    text-transform: uppercase;
+}
+
+._IshopButton {
+    width: 100%;
+    padding: 0px;
+    height: 100%;
+}
+
+.IshopImg {
+    height: 100%;
+    transition: 1s;
+}
+
+.IshopImg:hover {
+    transform: scale(1.6);
+}
+
+.IshopTableHead,
+.IshopName {
+    height: auto;
+    color: blue;
+    text-transform: uppercase;
+}
+
+.IshopCaption {
+    height: 5vh;
+}
+
+.IshopName {
+    color: red;
+    font-size: 2em;
+    ;
+}
+
+._IshopNumber {
+    width: 5vw;
+}
+
+_Ishophecked {
+    background-color: red;
+}
