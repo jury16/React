@@ -1,5 +1,5 @@
-Create an "Ishop" project (online store).
-Set the list of products in an online store as an array; for each product, at least the name, price, URL of the photo, and how many units of the product are left in the warehouse should be stored.
-Write a React component that displays a table with this list of products. The component should receive the name of the store and an array of products via props.
-Set types for props of the component.
-When developing a component, make the most of forEach and other array processing methods.
+Based on the ishop project, develop the ishop2 project (online store) in the ishop2 folder.</br>
+Two components must be described - "Store" and "Product".</br>
+One of the products can be made "selected" by clicking anywhere in the line. The line of the selected product is highlighted in color.</br>
+Each line with a product has a “delete” button.</br>
+By clicking the "delete" button, the user is asked to confirm the deletion (confirm) and the product is deleted.</br>
