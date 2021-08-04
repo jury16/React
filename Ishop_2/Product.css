@@ -1,0 +1,10 @@
+.ProductActive {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.ProductText {
+    color: green;
+    border: 1px solid blue;
+    text-align: center;
+    height: 10vh;
+}

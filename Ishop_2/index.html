@@ -14,6 +14,8 @@
 
     <script src="Ishop.js"></script>
     <link rel="stylesheet" type="text/css" href="Ishop.css" />
+    <script src="Product.js"></script>
+    <link rel="stylesheet" type="text/css" href="Product.css" />
 
     <script>
         var shopName = 'Ishop';
@@ -44,8 +46,8 @@
         }];
         ReactDOM.render(
             React.createElement(Ishop, {
-                shopName,
-                cars,
+                shopName: shopName,
+                cars: cars,
             }),
             document.getElementById('container')
         );
