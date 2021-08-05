@@ -8,15 +8,9 @@ var Product = React.createClass({
         cbDeleteItem: React.PropTypes.func,
         id: React.PropTypes.number,
     },
-    getInitialState: function() {
-        return {
-            //id: 0,
-            idDel: 0,
-            chekedItem: false,
-        }
-    },
+
     selectedItem: function(i) {
-        this.props.cbCheckedItem(i, this.state.chekedItem);
+        this.props.cbCheckedItem(i, this.chekedItem);
     },
 
     deleteItem: function(i) {
