@@ -10,10 +10,32 @@ var Ishop = React.createClass({
     propTypes: {
         shopName: React.PropTypes.string,
         cars: React.PropTypes.array,
+
+    },
+    getInitialState: function() {
+        return {
+            id: 0,
+            idDel: 0,
+            chekedItem: false,
+
+        }
+    },
+    checkedItem: function(i, checkedItem) {
+        this.setState(({ checkedItem: !checkedItem }));
+        this.setState(({ id: i }));
+    },
+
+    deleteItem: function(i) {
+        this.setState(({ idDel: i }));
     },
     render: function() {
 
-        console.log(this.cars);
+        this.props.cars.forEach((element, index, arr) => {
+            if (element.code == this.state.idDel) {
+                arr.splice(index, 1);
+            }
+        });
+
         const headTable = ["brand", "code", "picture", "quantity", "control"].map((item) => {
             return React.DOM.td({ key: item, className: 'IshopTableHead' }, item);
         });
@@ -22,7 +44,9 @@ var Ishop = React.createClass({
             React.DOM.caption({ className: 'IshopName' }, this.props.shopName),
             React.DOM.thead({ className: 'IshopTableHead' },
                 React.DOM.tr({}, headTable)),
-            React.createElement(Product, { cars: this.props.cars }),
+            React.DOM.tbody({ className: '' },
+                this.props.cars.map((item) => React.createElement(Product, { item: item, key: item.code, id: this.state.id, cars: this.props.cars, cbCheckedItem: this.checkedItem, cbDeleteItem: this.deleteItem, }))),
+
         )
     },
 });
