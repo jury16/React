@@ -19,12 +19,12 @@ var Ishop = React.createClass({
         }
     },
 
-    checkedItem: function(sectedCode) {
-        this.setState(({ selecteId: sectedCode }));
+    checkedItem: function(selectedCode) {
+        this.setState(({ selecteId: selectedCode }));
     },
 
-    deleteItem: function(deleteId) {
-        this.setState(({ aRR: this.state.aRR.filter(element => element.code != deleteId) }));
+    deleteItem: function(deletedCode) {
+        this.setState(({ aRR: this.state.aRR.filter(element => element.code != deletedCode) }));
     },
     render: function() {
         const headTable = ["brand", "code", "picture", "quantity", "control"].map((item) => {
