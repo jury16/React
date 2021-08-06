@@ -13,7 +13,11 @@ var Product = React.createClass({
     },
 
     deleteItem: function(i) {
-        this.props.cbDeleteItem(i);
+        var confirmDelete = confirm('Delete Item?') ? "yes" : "no";
+        if (confirmDelete == "yes") {
+            this.props.cbDeleteItem(i);
+        }
+
     },
 
     render: function() {
