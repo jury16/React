@@ -15,15 +15,16 @@ var Ishop = React.createClass({
     getInitialState: function() {
         return {
             aRR: this.props.cars.slice(), //create array to modify
+            selecteId: 0,
         }
     },
 
-    checkedItem: function(i) {
-        this.setState(({ id: i }));
+    checkedItem: function(sectedCode) {
+        this.setState(({ selecteId: sectedCode }));
     },
 
-    deleteItem: function(i) {
-        this.state.aRR = this.state.aRR.filter(element => element.code != i);
+    deleteItem: function(deleteId) {
+        this.setState(({ aRR: this.state.aRR.filter(element => element.code != deleteId) }));
     },
     render: function() {
         const headTable = ["brand", "code", "picture", "quantity", "control"].map((item) => {
@@ -35,7 +36,7 @@ var Ishop = React.createClass({
             React.DOM.thead({ className: 'IshopTableHead' },
                 React.DOM.tr({}, headTable)),
             React.DOM.tbody({ className: '' },
-                this.state.aRR.map((item) => React.createElement(Product, { item: item, key: item.code, id: this.state.id, cbCheckedItem: this.checkedItem, cbDeleteItem: this.deleteItem, }))),
+                this.state.aRR.map((item) => React.createElement(Product, { item: item, key: item.code, selecteId: this.state.selecteId, cbCheckedItem: this.checkedItem, cbDeleteItem: this.deleteItem, }))),
 
         )
     },

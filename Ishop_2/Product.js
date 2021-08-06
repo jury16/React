@@ -1,27 +1,24 @@
 var Product = React.createClass({
     displayName: 'Product',
     propTypes: {
-        aRR: React.PropTypes.array,
         item: React.PropTypes.object,
         cbCheckedItem: React.PropTypes.func,
         cbDeleteItem: React.PropTypes.func,
-        id: React.PropTypes.number,
+        selecteId: React.PropTypes.number,
     },
 
-    selectedItem: function(i) {
-        this.props.cbCheckedItem(i);
+    selectedItem: function(sectedCode) {
+        this.props.cbCheckedItem(sectedCode);
     },
 
-    deleteItem: function(i) {
-        var confirmDelete = confirm('Delete Item?') ? "yes" : "no";
-        if (confirmDelete == "yes") {
-            this.props.cbDeleteItem(i);
+    deleteItem: function(code) {
+        if (confirm('Delete Item?') ? true : false) {
+            this.props.cbDeleteItem(code);
         }
-
     },
 
     render: function() {
-        (this.props.id == this.props.item.code) ? claSS = 'ProductActive': claSS = null;
+        (this.props.selecteId == this.props.item.code) ? claSS = 'ProductActive': claSS = null;
         return React.DOM.tr({ key: this.props.item.code, className: claSS, onClick: this.selectedItem.bind(this, this.props.item.code, ), },
             React.DOM.td({ className: 'ProductText' }, this.props.item.brand),
             React.DOM.td({ className: 'ProductText _number' }, this.props.item.code),
