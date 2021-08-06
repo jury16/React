@@ -1,8 +1,7 @@
 var Product = React.createClass({
     displayName: 'Product',
     propTypes: {
-        cars: React.PropTypes.array,
-        idDel: React.PropTypes.number,
+        aRR: React.PropTypes.array,
         item: React.PropTypes.object,
         cbCheckedItem: React.PropTypes.func,
         cbDeleteItem: React.PropTypes.func,
@@ -10,7 +9,7 @@ var Product = React.createClass({
     },
 
     selectedItem: function(i) {
-        this.props.cbCheckedItem(i, this.chekedItem);
+        this.props.cbCheckedItem(i);
     },
 
     deleteItem: function(i) {
