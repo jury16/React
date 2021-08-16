@@ -7,6 +7,7 @@ class ProductInfo extends React.Component{
     static propTypes = {
         selecteId: PropTypes.number,
         aRR: PropTypes.array,
+        change: PropTypes.number,
 
       };
       constructor(props) {
@@ -17,6 +18,7 @@ class ProductInfo extends React.Component{
       }
      
     render(){
+        //console.log(this.props.change);
         var itemCard = this.props.aRR.filter(item => item.code === this.props.selecteId);
         var productCard = itemCard[0];
         
@@ -25,7 +27,7 @@ class ProductInfo extends React.Component{
         if (itemCard[0]){
             return(
                 <table className='ProductInfoWrapper'>
-                    <ProductCard productCard={productCard}/>
+                    <ProductCard productCard={productCard} change={this.props.change} selecteId={this.props.selecteId} aRR={this.props.aRR}/>
                 </table>
             )
         }

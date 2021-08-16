@@ -7,50 +7,70 @@ class ProductCard extends React.Component{
         selecteId: PropTypes.number,
         aRR: PropTypes.array,
         productCard: PropTypes.object,
+        change: PropTypes.number,
 
       };
       constructor(props) {
         super(props);       
         this.state = {          
-           //item: this.props.productCard,
-        };
+           arrCars: this.props.aRR,
+           productBrand: this.props.productCard,
+           
+          
+        };        
       }
-      validatingName = (name) =>{
-
+      state = {
+        branD : this.props.productCard.brand,
       }
-      //this.setState({item: this.props.productCard})
+      avaliableChange = () => {
+          this.setState()
+      }
+      validatingName = (EO) =>{
+             }
+      
     render(){
-        //console.log(this.props.productCard.code );
+        
+        console.log(this.props.productCard.brand);
+        var displayButton = false;
+        
+        if (this.props.change === this.props.selecteId){
+            displayButton = '_displayButtonOn';
+           
+        } 
+        else{
+           
+            displayButton = '_displayButtonOff';
+        }
         
         return (    
                                 
                 <tbody className=''> 
                     <tr className=''>
-                        <td><label className=''>Brand:</label></td>
-                        <td><input className='ProductCardText _input' type="text" id="Brand" value={this.props.productCard.brand} onChange={this.validatingName}></input></td>
+                        <td><span className=''>Brand:</span></td>
+                        <td><input className='ProductCardText _input' type="text" id="Brand"  defaultValue={this.props.productCard.brand} onChange={this.validatingName}></input></td>
                     </tr>
                     
                     <tr>
-                    <td><label className=''>Id:  </label></td>
-                    <td><input className='ProductCardText _input' type="text" id="Id" value={this.props.productCard.code} onChange={this.validatingName}></input></td>
+                    <td><span className=''>Id:  </span></td>
+                    <td><input className='ProductCardText _input' type="text" id="Id"  value={this.props.productCard.code} onChange={this.validatingName}></input></td>
                     </tr> 
                     <tr>
-                    <td><label className=''>URL:</label> </td>
-                    <td><input className='ProductCardText _input' type="text" id="URL" value= {this.props.productCard.url} onChange={this.validatingName}></input></td>
+                    <td><span className=''>URL:</span> </td>
+                    <td><input className='ProductCardText _input' type="text" id="URL"  value= {this.props.productCard.url} onChange={this.validatingName}></input></td>
                     </tr>    
     
                     <tr>
-                    <td><label className=''>Quantity: </label></td>
-                    <td><input className='ProductCardText _input' type="text" id="Quantity" value={this.props.productCard.count} onChange={this.validatingName}></input></td>
+                    <td><span className=''>Quantity: </span></td>
+                    <td><input className='ProductCardText _input' type="text" id="Quantity"  value={this.props.productCard.count} onChange={this.validatingName}></input></td>
 
                     </tr>    
                     <tr>
-                    <td><label className=''>Price: </label></td>
-                    <td><input className='ProductCardText _input' type="text" id="Price" value={this.props.productCard.price} onChange={this.validatingName}></input></td>
+                    <td><span className=''>Price: </span></td>
+                    <td><input className='ProductCardText _input' type="text" id="Price"  value={this.props.productCard.price} onChange={this.validatingName}></input></td>
                     </tr>       
-                    <tr>
-                        <td><input className='ProductCardText _inputButton ' type="button" value="save" /> </td>
-                        <td><input className='ProductCardText _inputButton ProductCardButtonChange' type="button" value="cancel" /> </td>
+                    <tr className={displayButton}>
+                        <td><input className='ProductCardText _inputButton ' type="button" value="save" /> 
+                        <input className='ProductCardText _inputButton' type="button" value="cancel" /> </td>
                     </tr>     
                </tbody>
 

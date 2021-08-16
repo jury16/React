@@ -27,25 +27,28 @@ class Ishop extends React.Component{
   state = {
     // начальное значение state может быть указано здесь, оно может зависеть от this.props
     selecteId: 0,
-    itemCard: null,
+    change: 0,
+
   };
 
   checkedItem = (selectedCode) => {
     this.setState(({ selecteId: selectedCode }));
+    
   };
   
   deleteItem = (deletedCode) => {    
     this.setState(({ aRR: this.state.aRR.filter(element => element.code !== deletedCode) }));
   };
-  changeItemInfo = (infoCode) =>{
-    this.setState(({ itemCard: infoCode }));
-  }
+ changeItem = (code) =>{
+  this.setState(({ change: code}));
+ }
+
 
   render() {
-    //console.log(this.state.aRR);
+    //console.log(this.state.change);
     var listCars = this.state.aRR.map((item) =>
     <Product 
-    item={item} key={item.code} selecteId={this.state.selecteId} cbCheckedItem={this.checkedItem} cbDeleteItem={this.deleteItem}
+    item={item} key={item.code} selecteId={this.state.selecteId} cbCheckedItem={this.checkedItem} cbDeleteItem={this.deleteItem} cbchangeItem={this.changeItem} change={this.state.change}
     >
     </Product>
     );  
@@ -65,7 +68,7 @@ class Ishop extends React.Component{
           </tbody> 
         </table>
         <div>
-          <ProductInfo selecteId={this.state.selecteId} aRR={this.state.aRR}/>
+          <ProductInfo selecteId={this.state.selecteId} aRR={this.state.aRR} change={this.state.change}/>
         </div>
       </div>
     );

@@ -7,7 +7,10 @@ class Product extends React.Component{
         item: PropTypes.object,
         cbCheckedItem: PropTypes.func,
         cbDeleteItem: PropTypes.func,
+        cbchangeItem: PropTypes.func,
         selecteId: PropTypes.number,
+        change: PropTypes.number,
+
       };
       constructor(props) {
         super(props);   
@@ -19,7 +22,7 @@ class Product extends React.Component{
       }
       state = {
         // начальное значение state может быть указано здесь, оно может зависеть от this.props
-        changeProduct: false,
+
       };
       selectedItem = (selectedCode) => {
         this.props.cbCheckedItem(selectedCode);
@@ -30,16 +33,14 @@ class Product extends React.Component{
             this.props.cbDeleteItem(deletedCode);
         }
     };
-    changeItem = (changeItemCode) => {
-        this.setState(({ changeProduct: changeItemCode }));
-    };
+    changeItem = (code) =>{
+        this.props.cbchangeItem(code);
+    }
     
     render(){
-        var claSS = null;
-        var changeProduct = false;
-        
-        (this.props.selecteId === this.props.item.code) ? changeProduct = true: changeProduct = false;
-        changeProduct? claSS = 'ProductActive': claSS = null;
+        var claSS = null;        
+        //console.log(this.props.change);
+        (this.props.selecteId === this.props.item.code) ? claSS = 'ProductActive': claSS = null;
         return(
             <>
             <tr key={this.props.item.code} className={claSS} onClick={this.selectedItem.bind(this, this.props.item.code, )}>

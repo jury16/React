@@ -4,7 +4,7 @@
 }
 ._input{
     color: black;
-    margin-left: 50px;
+    margin-left: 10px;
     text-transform: none;
     width: 400px;
 }
@@ -16,5 +16,11 @@
     width: 100%;
 }
 .ProductCardButtonChange{
-    width: 15%;
+    width: 100%;
+}
+._displayButtonOn{
+    display: block;
+}
+._displayButtonOff{
+    display: none;
 }
