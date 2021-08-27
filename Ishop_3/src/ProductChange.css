@@ -1,0 +1,35 @@
+.ProductChange{
+        color: black;
+        width: 100%;
+        text-transform: uppercase;
+
+}
+
+.ProductChange input{
+    width: 100%;
+    text-transform: uppercase;
+}
+._url{
+    text-transform: none;
+}
+label{
+    font-weight: 500;  
+    float: left; 
+    margin-right: 10px;
+}
+
+span{
+    text-transform: none;
+    text-align: left;
+}
+._button{
+    width: 50%;
+}
+.faultMessage{
+    color: red;
+    padding: 0px 10px;
+    width: 400px;
+}
+table{
+    min-width: 60%;
+}

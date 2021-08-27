@@ -1,0 +1,21 @@
+.ProductText {
+    color: green;
+    border: 1px solid blue;
+    text-align: center;
+    height: 10vh;
+    text-transform: uppercase;
+}
+._button {
+    color: green;
+    padding: 0px;
+    margin: 0px;
+    width: 50%;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+
+.ProductActive {
+    background-color: rgba(255, 166, 0, 0.856);
+}

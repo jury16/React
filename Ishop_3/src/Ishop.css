@@ -1,0 +1,38 @@
+.IshopFrame {
+  border: 2px solid black;
+  min-width: 60%;
+}
+
+.IshopTableHead {
+  color: green;
+  border: 1px solid blue;
+  text-align: center;
+  height: 10vh;
+}
+
+.IshopImg {
+  height: 100%;  
+}
+
+
+
+.IshopTableHead,
+.IshopName {
+  height: auto;
+  color: blue;
+  text-transform: uppercase;
+}
+
+.IshopCaption {
+  height: 5vh;
+}
+
+.IshopName {
+  color: red;
+  font-size: 2em;
+  ;
+}
+
+._number {
+  width: 5vw;
+}

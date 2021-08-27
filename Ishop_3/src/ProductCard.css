@@ -1,0 +1,10 @@
+.ProductCard > table, td{
+    text-transform: uppercase;
+}
+.ProductCard td:first-child{
+    width: 100px;
+    
+}
+._img{
+    width: 50%;
+}
