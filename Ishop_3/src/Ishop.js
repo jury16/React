@@ -142,7 +142,7 @@ class Ishop extends React.Component{
               <ProductChange cdchange={this.state.change} car={this.state.carChange} cbCheckedItem={this.checkedItem} cbSave={this.carToSave} disableDelChangeButtons={this.state.disableDelChangeButtons} change={this.state.change} 
                 productChanged={this.state.productChanged} cbproductChangedState={this.productChangedState} classButtons={this.state.classButtons}/>
               :
-              ((this.state.selecteId || !this.state.deleteCard) && (!this.state.disableNewProduct || this.state.selecteId))
+              (this.state.selecteId || ((!this.state.deleteCard) && (!this.state.disableNewProduct)))
               
                 ?                  
                   <ProductCard selecteId={this.state.selecteId} selectedCar={this.state.isSelectedCar[0]}/>
