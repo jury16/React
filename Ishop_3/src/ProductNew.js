@@ -56,7 +56,7 @@ class ProductNew extends React.Component{
         this.setState({carHash: carNewHash}, this.props.cbSave(carNewHash));             
     }
     render(){
-        console.log(this.state.disableSaveClass)
+
         return(
             <table >
                 <tbody>

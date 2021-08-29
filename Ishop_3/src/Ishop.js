@@ -56,8 +56,9 @@ class Ishop extends React.Component{
     this.setState(({ productChanged: status, change: this.state.selecteId,}), this.changeItem);
    }
  changeItem = (code) =>{
-   if (isNaN(code)){
+   if (code === undefined){
      code = this.state.change;
+     
    }
 
     var disableDel;
@@ -77,17 +78,13 @@ class Ishop extends React.Component{
   this.setState({carChange: item,});  
  }
  carToSave = (car) =>{
-   if(car.brand == null){this.setState({productChanged: false}, this.save);
-    
+   if(car.brand == null){this.setState({productChanged: false}, this.save);   
    }
-   else if (this.state.idToAdd >= car.code){
-    
-      var caR = this.state.aRR.map(item => item.code === car.code? car: item);
-      
-      this.setState({aRR: caR, disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);
-     
+   else if (car.code <= Object.keys(this.props.cars).length){
+      var caR = this.state.aRR.map(item => item.code === car.code? car: item);      
+      this.setState({aRR: caR, disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);     
    }
-  else if(this.state.idToAdd < car.code){
+  else if(car.code > Object.keys(this.props.cars).length){
     this.state.aRR.push(car);
     this.setState({disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);  
   } 
@@ -97,7 +94,6 @@ class Ishop extends React.Component{
  }
 
  addNewProduct = () => {  
-   console.log()
   this.setState(({ disableNewProduct: true, selecteId: 0, idToAdd: (this.state.idToAdd + 1), disableDelChangeButtons: "disabled", classButtons: '_button _disactive'}), this.createNewProduct);
  }
 
@@ -146,7 +142,8 @@ class Ishop extends React.Component{
               <ProductChange cdchange={this.state.change} car={this.state.carChange} cbCheckedItem={this.checkedItem} cbSave={this.carToSave} disableDelChangeButtons={this.state.disableDelChangeButtons} change={this.state.change} 
                 productChanged={this.state.productChanged} cbproductChangedState={this.productChangedState} classButtons={this.state.classButtons}/>
               :
-              (this.state.selecteId || this.state.deleteCard)
+              ((this.state.selecteId || !this.state.deleteCard) && (!this.state.disableNewProduct || this.state.selecteId))
+              
                 ?                  
                   <ProductCard selecteId={this.state.selecteId} selectedCar={this.state.isSelectedCar[0]}/>
                 :
