@@ -56,8 +56,6 @@ class Ishop extends React.Component{
     this.setState(({ productChanged: status, change: this.state.selecteId,}), this.changeItem);
    }
  changeItem = (code) =>{
-   console.log('changedItem code: ', code)
-
    if (isNaN(code)){
      code = this.state.change;
    }
@@ -79,8 +77,6 @@ class Ishop extends React.Component{
   this.setState({carChange: item,});  
  }
  carToSave = (car) =>{
-  console.log(car.code)
-  console.log(this.state.idToAdd)
    if(car.brand == null){this.setState({productChanged: false}, this.save);
     
    }
