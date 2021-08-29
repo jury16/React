@@ -53,13 +53,15 @@ class Ishop extends React.Component{
   };
 
   productChangedState = (status) => {
-    console.log(status);
-    this.setState(({ productChanged: status, change: this.state.selecteId}), this.changeItem);
+    this.setState(({ productChanged: status, change: this.state.selecteId,}), this.changeItem);
    }
  changeItem = (code) =>{
+   console.log('changedItem code: ', code)
+
    if (isNaN(code)){
      code = this.state.change;
    }
+
     var disableDel;
     if(code && this.state.productChanged){
       disableDel = "disabled";
@@ -72,19 +74,24 @@ class Ishop extends React.Component{
       
  }
  carToChange = (code) =>{   
+  
   var item = this.state.aRR.find(item => item.code === code);
   this.setState({carChange: item,});  
  }
  carToSave = (car) =>{
-   if(car.brand == null){
-    this.setState({productChanged: false}, this.save);
+  console.log(car.code)
+  console.log(this.state.idToAdd)
+   if(car.brand == null){this.setState({productChanged: false}, this.save);
+    
    }
-   else if (Object.keys(this.state.aRR).length >= car.code){
-      var caR = this.state.aRR.map((item => item.code === car.code? car: item));
+   else if (this.state.idToAdd >= car.code){
+    
+      var caR = this.state.aRR.map(item => item.code === car.code? car: item);
+      
       this.setState({aRR: caR, disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);
      
    }
-  else if(Object.keys(this.state.aRR).length < car.code){
+  else if(this.state.idToAdd < car.code){
     this.state.aRR.push(car);
     this.setState({disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);  
   } 
@@ -94,6 +101,7 @@ class Ishop extends React.Component{
  }
 
  addNewProduct = () => {  
+   console.log()
   this.setState(({ disableNewProduct: true, selecteId: 0, idToAdd: (this.state.idToAdd + 1), disableDelChangeButtons: "disabled", classButtons: '_button _disactive'}), this.createNewProduct);
  }
 
