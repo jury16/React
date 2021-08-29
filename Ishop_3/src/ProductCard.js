@@ -4,7 +4,7 @@ import './ProductCard.css';
 
 class ProductCard extends React.Component{
     static propTypes = {
-        carS: PropTypes.array,
+        selectedCar:PropTypes.object,
         selecteId: PropTypes.number,
       };
       constructor(props) {
@@ -18,8 +18,7 @@ class ProductCard extends React.Component{
     
     render(){
        
-        var car= this.props.carS.filter(item => item.code === this.props.selecteId);
-        car = car[0];
+        var car= this.props.selectedCar;
         
         return(  
             <>      

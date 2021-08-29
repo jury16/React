@@ -24,6 +24,7 @@ class ProductChange extends React.Component{
             count: this.props.car.count,
             disableDelete: this.props.disableDeleteButton, 
             productChanged: this.props.productChanged,
+            disableSaveClass: '_button',     
             
         };
       }
@@ -48,10 +49,10 @@ class ProductChange extends React.Component{
         this.props.cbproductChangedState(this.state.productChanged);
         if ((this.state.brand && this.state.price && this.state.url && this.state.count)){
             
-            this.setState({disableSave: null} )
+            this.setState({disableSave: null, disableSaveClass: '_button'} )
         }
         else{
-            this.setState({disableSave: "disabled"} );
+            this.setState({disableSave: "disabled", disableSaveClass: '_button _disactive'} );
         }
         
       }
@@ -85,6 +86,7 @@ class ProductChange extends React.Component{
         
     }
     render(){
+
         return(
             <table >
                 <tbody>
@@ -111,7 +113,7 @@ class ProductChange extends React.Component{
                     <tr className='_buttons'>
                         <td></td>
                         <td><input type="button" value="cancel" className='_button' onClick={this.cancel.bind(this)}/>
-                        <input type="button" value="save" className='_button' onClick={this.save.bind(this)} disabled={this.state.disableSave}/></td>
+                        <input type="button" value="save" className={this.state.disableSaveClass}  onClick={this.save.bind(this)} disabled={this.state.disableSave}/></td>
 
                     </tr>
                 </tbody>

@@ -12,14 +12,16 @@ class ProductNew extends React.Component{
       constructor(props) {
         super(props);       
         this.state = {    
-            disableSave: this.props.disableSave,     
+            disableSave: this.props.disableSave, 
+            disableSaveClass: '_button _disactive',       
             carHash: this.props.carHash,     
             code: this.props.carHash.code,        
             brand: this.props.carHash.brand,        
             price: this.props.carHash.price,        
             url: this.props.carHash.url,        
             count: this.props.carHash.count,  
-            selecteId: this.props.selecteId,    
+            selecteId: this.props.selecteId,  
+            
         };
       }
       state = {   
@@ -29,9 +31,9 @@ class ProductNew extends React.Component{
       check = () =>{ 
         (this.state.brand && this.state.price && this.state.url && this.state.count)
         ?
-        this.setState({disableSave: null} )
+        this.setState({disableSave: null, disableSaveClass: '_button'} )
         :
-        this.setState({disableSave: "disabled"} );
+        this.setState({disableSave: "disabled", disableSaveClass: '_button _disactive'} );
       }
       editBrand = (EO) =>{
         this.setState({brand: EO.target.value}, this.check);               
@@ -54,7 +56,7 @@ class ProductNew extends React.Component{
         this.setState({carHash: carNewHash}, this.props.cbSave(carNewHash));             
     }
     render(){
-        console.log()
+        console.log(this.state.disableSaveClass)
         return(
             <table >
                 <tbody>
@@ -85,8 +87,8 @@ class ProductNew extends React.Component{
                         </tr>
                     <tr className='_buttons'>
                         <td></td>
-                        <td><input type="button" value="cancel" className='_button' onClick={this.cancel.bind(this)}/>
-                        <input type="button" value="save" className='_button' onClick={this.saveCar.bind(this)} disabled={this.state.disableSave}/></td>
+                        <td><input type="button" value="cancel" className='_button'  onClick={this.cancel.bind(this)}/>
+                        <input type="button" value="save"  className={this.state.disableSaveClass} onClick={this.saveCar.bind(this)} disabled={this.state.disableSave}/></td>
 
                     </tr>
                 </tbody>

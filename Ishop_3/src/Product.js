@@ -11,6 +11,7 @@ class Product extends React.Component{
         selecteId: PropTypes.number,
         change: PropTypes.number,
         disableDelChangeButtons: PropTypes.string,
+        classButtons: PropTypes.string,
       };
       constructor(props) {
         super(props);   
@@ -46,13 +47,13 @@ class Product extends React.Component{
     }
     
     render(){
-        //console.log('changeCode: ', this.state.changeCode)
-        //console.log(this.state.disableDelete)
-        //console.log((this.state.disablCheck))
-        //console.log(this.props.disableDelChangeButtons) 
-        //console.log(this.state.disableDelete);
-        var claSS = null;        
-        ((this.props.selecteId === this.props.item.code) ) ? claSS = 'ProductActive': claSS = null;
+        var claSS = null;         
+        if ((this.props.selecteId === this.props.item.code)){
+            claSS = 'ProductActive';
+        }  
+        else{
+            claSS = null;
+        }
         return(
             <>
             <tr key={this.props.item.code} className={claSS} onClick={this.selectedItem.bind(this, this.props.item.code, )}>
@@ -64,8 +65,8 @@ class Product extends React.Component{
                 <td className='ProductText _number'>{this.props.item.count}</td>
                 <td className='ProductText _number'>{this.props.item.price}</td>
                 <td className='ProductText'>
-                    <input type="button" value="delete" className='_button' disabled={this.props.disableDelChangeButtons} onClick={this.deleteItem.bind(this, this.props.item.code)}/>
-                    <input type="button" value="change" className='_button' disabled={this.props.disableDelChangeButtons} onClick={this.changeItem.bind(this, this.props.item.code)}/>                    
+                    <input type="button" value="delete" className={this.props.classButtons} disabled={this.props.disableDelChangeButtons} onClick={this.deleteItem.bind(this, this.props.item.code)}/>
+                    <input type="button" value="change" className={this.props.classButtons} disabled={this.props.disableDelChangeButtons} onClick={this.changeItem.bind(this, this.props.item.code)}/>                    
                 </td>
                 
             </tr>            

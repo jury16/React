@@ -29,24 +29,22 @@ class Ishop extends React.Component{
        disableDelChangeButtons: null,
        productChanged: false,
        idToAdd: Object.keys(this.props.cars).length,
-       productChanged: false,
+       classButtons: ('_button'),
+       isSelectedCar: 0,
     };
   }
   state = {
     
   };
-  //!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!
-//permission click to another item
+
   checkedItem = (selectedCode) => {
     if(!this.state.disableNewProduct && !this.state.productChanged){
       selectedCode
       ?
-      this.setState({ selecteId: selectedCode })
+      this.setState({ selecteId: selectedCode }, this.selectedCarInfo)
       :    
       this.setState({ aRR: this.props.cars.slice()});
-    }
-    
+    }   
     
   };
   
@@ -65,11 +63,11 @@ class Ishop extends React.Component{
     var disableDel;
     if(code && this.state.productChanged){
       disableDel = "disabled";
-      this.setState(({ change: code, disableNewProduct: false, disableDelChangeButtons: disableDel}), this.carToChange(code));
+      this.setState(({ change: code, disableNewProduct: false, disableDelChangeButtons: disableDel, classButtons: '_button _disactive'}), this.carToChange(code));
     }
     else if(!this.state.productChanged){
       disableDel = null;
-      this.setState(({ change: code, disableNewProduct: false, disableDelChangeButtons: null}), this.carToChange(code));
+      this.setState(({ change: code, disableNewProduct: false, disableDelChangeButtons: null, classButtons: '_button'}), this.carToChange(code));
     }
       
  }
@@ -83,12 +81,12 @@ class Ishop extends React.Component{
    }
    else if (Object.keys(this.state.aRR).length >= car.code){
       var caR = this.state.aRR.map((item => item.code === car.code? car: item));
-      this.setState({aRR: caR, disableDelChangeButtons: null, productChanged: false}, this.save);
+      this.setState({aRR: caR, disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);
      
    }
   else if(Object.keys(this.state.aRR).length < car.code){
     this.state.aRR.push(car);
-    this.setState({disableDelChangeButtons: null, productChanged: false}, this.save);  
+    this.setState({disableDelChangeButtons: null, classButtons: '_button', productChanged: false}, this.save);  
   } 
  }
  save = () =>{  
@@ -96,18 +94,17 @@ class Ishop extends React.Component{
  }
 
  addNewProduct = () => {  
-  this.setState(({ disableNewProduct: true, selecteId: 0, idToAdd: (this.state.idToAdd + 1), disableDelChangeButtons: "disabled"}), this.createNewProduct);
-
+  this.setState(({ disableNewProduct: true, selecteId: 0, idToAdd: (this.state.idToAdd + 1), disableDelChangeButtons: "disabled", classButtons: '_button _disactive'}), this.createNewProduct);
  }
 
-
-
-  render() {   
-     
+ selectedCarInfo= () => {  
+  this.setState(({isSelectedCar: this.state.aRR.filter(item => item.code === this.state.selecteId) }));
+ }
+  render() {      
     var listCars = this.state.aRR.map((item) =>
     <Product 
     item={item} key={item.code} selecteId={this.state.selecteId} cbCheckedItem={this.checkedItem} cbDeleteItem={this.deleteItem} cbchangeItem={this.changeItem} change={this.state.change} 
-        disableDelChangeButtons={this.state.disableDelChangeButtons} productChanged={this.state.productChanged}
+        disableDelChangeButtons={this.state.disableDelChangeButtons} productChanged={this.state.productChanged} classButtons={this.state.classButtons}
     >
     </Product>
     );      
@@ -134,19 +131,20 @@ class Ishop extends React.Component{
           {
             (!this.state.disableNewProduct)
                 ?
-                <input type="button" value="new product" className='_button' disabled={this.state.disableDelChangeButtons} onClick={this.addNewProduct.bind(this)}/>     
+                <input type="button" value="new product" className={this.state.classButtons} disabled={this.state.disableDelChangeButtons} onClick={this.addNewProduct.bind(this)}/>     
                 :       
-                <ProductNew disableSave={"disabled" } carHash={{brand: null, code: this.state.idToAdd, price: null, url: null, count: null}} cbSave={this.carToSave} cbCheckedItem={this.checkedItem} selecteId={this.state.selecteId}/>
+                <ProductNew carHash={{brand: null, code: this.state.idToAdd, price: null, url: null, count: null}} cbSave={this.carToSave} cbCheckedItem={this.checkedItem} 
+                  classButtons={this.state.classButtons} selecteId={this.state.selecteId} />
           }
         </div>
         <div>
         {((this.state.change && this.state.change===this.state.selecteId) || this.state.productChanged)?
               <ProductChange cdchange={this.state.change} car={this.state.carChange} cbCheckedItem={this.checkedItem} cbSave={this.carToSave} disableDelChangeButtons={this.state.disableDelChangeButtons} change={this.state.change} 
-                productChanged={this.state.productChanged} cbproductChangedState={this.productChangedState}/>
+                productChanged={this.state.productChanged} cbproductChangedState={this.productChangedState} classButtons={this.state.classButtons}/>
               :
               (this.state.selecteId || this.state.deleteCard)
                 ?                  
-                  <ProductCard selecteId={this.state.selecteId} carS={this.state.aRR}/>
+                  <ProductCard selecteId={this.state.selecteId} selectedCar={this.state.isSelectedCar[0]}/>
                 :
                 null              
         }
@@ -154,7 +152,6 @@ class Ishop extends React.Component{
         
       </div>
     );
-   
   };
 }
 
