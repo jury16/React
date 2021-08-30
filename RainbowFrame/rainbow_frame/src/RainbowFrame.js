@@ -8,9 +8,10 @@ const RainbowFrame = (props) => {
       border = (
         <div
           style={{
+            textAlign: "center",
             border: "5px " + item + " solid",
             margin: "10px",
-            textAlign: "center",
+           
           }}
         >
           {props.children}
