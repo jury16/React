@@ -3,10 +3,10 @@ import "./BR2JSX.css";
 const BR2JSX = (props) => {
     const arr = [];
     props.text.split(/<br\s?\/?>/).forEach((item, index) => {
-      arr.push(item, (<br key={index}/>));
+     if(index)
+        arr.push(<br/>);    
+      arr.push(item);
     });
-    arr.pop();
-  
     return <div className="BR2JSX">{arr}</div>;
   };
   
