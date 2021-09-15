@@ -1,0 +1,11 @@
+.ClientsFrame{
+    text-align: center;
+
+}
+.ClientsFrames{
+    border: 1px solid;
+}
+table{
+    width: 600px;
+    margin: 10px;
+}

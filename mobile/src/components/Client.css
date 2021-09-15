@@ -1,0 +1,13 @@
+.ClientFrame{
+    text-align: center;   
+
+}
+.ClientFrames{
+    border: 1px solid;
+    margin: 0px;
+    padding: 0px;
+}
+.ClientFrame input{
+    width: 100%;    
+    border: 1px solid;
+}
