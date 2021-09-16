@@ -11,3 +11,9 @@
     width: 100%;    
     border: 1px solid;
 }
+._active{
+    background-color: green;
+}
+._blocked{
+    background-color: red;
+}

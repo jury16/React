@@ -1,5 +1,6 @@
 .ClientsFrame{
     text-align: center;
+    
 
 }
 .ClientsFrames{
@@ -8,4 +9,7 @@
 table{
     width: 600px;
     margin: 10px;
+}
+.button{
+    margin-left: 10px;
 }

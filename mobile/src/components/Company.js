@@ -28,8 +28,8 @@ class Company extends React.PureComponent {
     return (
       <div className="Company">
         <div className="SelectCompany">
-          <input type="button" value="Videotron" onClick={this.setName1.bind(this)} />
-          <input type="button" value="Rogers" onClick={this.setName2.bind(this)} />
+          <input type="button" value="Videotron" onClick={this.setName1} />
+          <input type="button" value="Rogers" onClick={this.setName2} />
           <p>Company Name: {this.state.name} </p>
         </div>
         <hr />
