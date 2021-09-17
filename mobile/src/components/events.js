@@ -1,4 +1,3 @@
 import { EventEmitter } from "events";
-let myEvents = new EventEmitter();
-
-export { myEvents };
+let clickEvent = new EventEmitter();
+export { clickEvent };

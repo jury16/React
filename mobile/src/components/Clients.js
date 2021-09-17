@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Client from './Client';
 import './Clients.css';
+import { clickEvent } from "./events";
 
 class Clients extends React.PureComponent {
     static propTypes = {
@@ -24,47 +25,55 @@ class Clients extends React.PureComponent {
       };
       checkAll = () => {
           if (this.state.clickActive || this.state.clickBlocked ){
-            this.setState({
-                clickActive: false,
-                clickBlocked: false,
-                edit: false,
-              });
+            this.setState({clickActive: false, clickBlocked: false, edit: false,});
           }
          
           //console.log('checked ALL')
       };
       checkActive = () => {
         if (!this.state.clickActive) {
-          this.setState({
-            clickActive: true,
-            clickBlocked: false,
-            edit: false,
-          });
+            this.setState({clickActive: true, clickBlocked: false, edit: false,});
         }
         //console.log('checked Active')
       };
       checkBlocked = () => {
         if (!this.state.clickBlocked) {
-          this.setState({
-            clickActive: false,
-            clickBlocked: true,
-            edit: false,
-          });
+          this.setState({clickActive: false, clickBlocked: true, edit: false,});
           //console.log('checked Blocked')
         }
       };
       addClient = () =>{
         this.setState({ counID: this.state.counID + 1,});
-        let newClient = {
-            id: this.state.counID,
-            fam: null,
-            im: null,
-            otch: null,
-            balance: null,
-          };
+        let newClient = {id: this.state.counID, firstName: null, secondeName: null, balance: null,};
           let newClients = [...this.state.clients, newClient];
           this.setState({ clients: newClients, edit: true});  
       }
+      save = (id, firstName, secondeName, balance) => {
+        let newClients = [...this.state.clients];
+        newClients.forEach((client, index) => {
+          if (client.id === id) {
+            let newClient = { ...client };
+            newClient.firstName = firstName;
+            newClient.secondeName = secondeName;
+            newClient.balance = Number(balance);
+            newClients[index] = newClient;
+          }
+        });
+        this.setState({clients: newClients,});
+      };
+      delete = (id) => {
+        let newClients = this.state.clients.filter((e) => e.id !== id);
+        this.setState({clients: newClients, edit: null,});
+      };
+      componentDidMount = () => {
+        clickEvent.addListener("delete", this.delete);
+        clickEvent.addListener("save", this.save);
+      };
+    
+      componentWillUnmount = () => {
+        clickEvent.removeListener("delete", this.delete);
+        clickEvent.removeListener("save", this.save);
+      };
   render() {
     console.log('renderCliens');    
     let newClients = [];

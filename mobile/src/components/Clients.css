@@ -1,11 +1,8 @@
 .ClientsFrame{
-    text-align: center;
-    
+    text-align: center;   
+    font-weight: 600;
+}
 
-}
-.ClientsFrames{
-    border: 1px solid;
-}
 table{
     width: 600px;
     margin: 10px;

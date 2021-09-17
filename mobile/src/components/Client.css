@@ -1,12 +1,7 @@
-.ClientFrame{
-    text-align: center;   
-
-}
 .ClientFrames{
-    border: 1px solid;
-    margin: 0px;
-    padding: 0px;
+    text-align: center;   
 }
+
 .ClientFrame input{
     width: 100%;    
     border: 1px solid;
@@ -16,4 +11,7 @@
 }
 ._blocked{
     background-color: red;
+}
+._button{
+    width: 100%;
 }

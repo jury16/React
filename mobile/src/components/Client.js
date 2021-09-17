@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Client.css";
+import { clickEvent } from "./events";
+import ChangeClient from "./ChangeClient";
+
 
 console.log('from CLIENT')
 class Client extends React.PureComponent {
@@ -10,32 +13,49 @@ class Client extends React.PureComponent {
       state = {
         edit: this.props.edit,
       }; 
-    deleteclient = () =>{
-      
+    deleteClient = () =>{
+      clickEvent.emit("delete", this.props.client.id);
     }
-    changeclient = () =>{
+    changeClient = () =>{
       this.setState({edit: true,});
-    }   
+    }  
+    componentDidMount = () => {
+      clickEvent.addListener("save", this.save);
+    };
+  
+    componentWillUnmount = () => {
+      clickEvent.removeListener("save", this.save);
+    }; 
+    save = () => {
+      this.setState({edit: null,});
+    };
   render() {
     console.log("renderClient id: ", this.props.client.id); 
-    console.log("this.state.edit: ", this.state.edit); 
-    return (
-        <tr className='ClientFrame'>
-            <td className='ClientFrames'>{this.props.client.firstName}</td>
-            <td className='ClientFrames'>{this.props.client.secondeName}</td>
-            <td className='ClientFrames'>{this.props.client.balance}</td>
-            <td className={this.props.client.balance > 0? "ClientFrames _active": "ClientFrames _blocked"}>
-              {this.props.client.balance > 0 ? "active" : "blocked"}
-            </td>
-            <td className='ClientFrames'>
-                <input type="button" value="delete"  onClick={this.deleteclient}/>                        
-            </td>
-            <td className='ClientFrames'>
-            <input type="button" value="change"  onClick={this.changeclient}/>            
-            </td>
-        </tr>         
-
-    )
+    //console.log("this.state.edit: ", this.state.edit); 
+    let viewClient;
+      if (this.state.edit) {
+        viewClient = <ChangeClient client={this.props.client} />;
+      } 
+      else {
+        viewClient = (
+          <tr className=''>
+              <td className='ClientFrames'>{this.props.client.firstName}</td>
+              <td className='ClientFrames'>{this.props.client.secondeName}</td>
+              <td className='ClientFrames'>{this.props.client.balance}</td>
+              <td className={this.props.client.balance > 0? "ClientFrames _active": "ClientFrames _blocked"}>
+                {this.props.client.balance > 0 ? "active" : "blocked"}
+              </td>
+              <td className=''>
+                  <input type="button" value="delete" className='_button' onClick={this.deleteClient}/>                        
+              </td>
+              <td className=''>
+              <input type="button" value="change"  className='_button' onClick={this.changeClient}/>            
+              </td>
+          </tr>   
+        )
+      }      
+      return viewClient;
+    
   }
 }
 
