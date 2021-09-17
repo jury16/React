@@ -5,7 +5,7 @@ import { clickEvent } from "./events";
 import ChangeClient from "./ChangeClient";
 
 
-console.log('from CLIENT')
+//console.log('from CLIENT')
 class Client extends React.PureComponent {
     static propTypes = {
         client: PropTypes.object,       
@@ -13,10 +13,11 @@ class Client extends React.PureComponent {
       state = {
         edit: this.props.edit,
       }; 
-    deleteClient = () =>{
+    delete = () =>{
       clickEvent.emit("delete", this.props.client.id);
+      
     }
-    changeClient = () =>{
+    change = () =>{
       this.setState({edit: true,});
     }  
     componentDidMount = () => {
@@ -27,7 +28,7 @@ class Client extends React.PureComponent {
       clickEvent.removeListener("save", this.save);
     }; 
     save = () => {
-      this.setState({edit: null,});
+      this.setState({edit: false,});
     };
   render() {
     console.log("renderClient id: ", this.props.client.id); 
@@ -46,10 +47,10 @@ class Client extends React.PureComponent {
                 {this.props.client.balance > 0 ? "active" : "blocked"}
               </td>
               <td className=''>
-                  <input type="button" value="delete" className='_button' onClick={this.deleteClient}/>                        
+                  <input type="button" value="delete" className='_button' onClick={this.delete}/>                        
               </td>
               <td className=''>
-              <input type="button" value="change"  className='_button' onClick={this.changeClient}/>            
+              <input type="button" value="change"  className='_button' onClick={this.change}/>            
               </td>
           </tr>   
         )

@@ -63,7 +63,7 @@ class Clients extends React.PureComponent {
       };
       delete = (id) => {
         let newClients = this.state.clients.filter((e) => e.id !== id);
-        this.setState({clients: newClients, edit: null,});
+        this.setState({clients: newClients, edit: false,});
       };
       componentDidMount = () => {
         clickEvent.addListener("delete", this.delete);

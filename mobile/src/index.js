@@ -13,7 +13,7 @@ var clientsList = [
   { "id": 110, "firstName": "Roy", "secondeName": "Charlie", "balance": 180 },
   { "id": 120, "firstName": "Bouchard", "secondeName": "Trista", "balance": -220 }
 ];
-console.log(clientsList);
+//console.log(clientsList);
 ReactDOM.render(  
   <React.Fragment>
     <Company name={companyName} />
